@@ -1,1 +1,1 @@
-﻿namespace Factory_Method;
+﻿namespace Composite;

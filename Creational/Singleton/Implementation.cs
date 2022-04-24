@@ -1,6 +1,5 @@
-﻿namespace Singleton
-{
-    public class Logger
+﻿namespace Singleton;
+ public class Logger
     {
         private static readonly Lazy<Logger> _lazylogger = new Lazy<Logger>(() => new Logger());
         //private static Logger? _instance;
@@ -25,4 +24,3 @@
             Console.WriteLine($"Message: {message}");
         }
     }
-}
