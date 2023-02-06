@@ -1,4 +1,5 @@
 ﻿//Singleton - The intent of the singleton pattern is to ensure that a class only has one instance, and to provide a global point of access to it. 
+
 //Use cases: when there must be exactly one instance of a class
 
 namespace Singleton;
