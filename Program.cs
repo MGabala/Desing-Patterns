@@ -14,19 +14,32 @@
 //Logger.Instance.Log("This is message from Logger.Instance");
 //#endregion
 
-#region FactoryMethod
-using Factory_Method;
+//#region FactoryMethod
+//using Factory_Method;
+//Console.Title = "Factory Method";
+//var factories = new List<DiscountFactory>
+//{
+//    new CountryDiscountFactory("PL"),
+//    new CodeDiscountFactory(Guid.NewGuid())
+//};
 
-var factories = new List<DiscountFactory>
-{
-    new CountryDiscountFactory("PL"),
-    new CodeDiscountFactory(Guid.NewGuid())
-};
+//foreach(var factory in factories)
+//{
+//    var discountService = factory.CreateDiscountService();
+//    Console.WriteLine($"Percentage {discountService.DiscountPercentage} " + $"comming from {discountService}");
+//}
+//#endregion
 
-foreach(var factory in factories)
-{
-    var discountService = factory.CreateDiscountService();
-    Console.WriteLine($"Percentage {discountService.DiscountPercentage} " + $"comming from {discountService}");
-}
+#region AbstractFactory
+using Abstract;
 
+Console.Title = "Abstract Factory";
+
+var polandPurchaseFactory = new PolandPurchaseFactory();
+var polandShoppingCart = new ShoppingCart(polandPurchaseFactory);
+polandShoppingCart.CalculateCosts();
+
+var chinesePurchaseFactory = new ChinesePurchaseFactory();
+var chineseShoppingCart = new ShoppingCart(chinesePurchaseFactory);
+chineseShoppingCart.CalculateCosts();
 #endregion
