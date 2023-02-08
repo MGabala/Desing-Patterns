@@ -30,16 +30,38 @@
 //}
 //#endregion
 
-#region AbstractFactory
-using Abstract;
+//#region AbstractFactory
+//using Abstract;
 
-Console.Title = "Abstract Factory";
+//Console.Title = "Abstract Factory";
 
-var polandPurchaseFactory = new PolandPurchaseFactory();
-var polandShoppingCart = new ShoppingCart(polandPurchaseFactory);
-polandShoppingCart.CalculateCosts();
+//var polandPurchaseFactory = new PolandPurchaseFactory();
+//var polandShoppingCart = new ShoppingCart(polandPurchaseFactory);
+//polandShoppingCart.CalculateCosts();
 
-var chinesePurchaseFactory = new ChinesePurchaseFactory();
-var chineseShoppingCart = new ShoppingCart(chinesePurchaseFactory);
-chineseShoppingCart.CalculateCosts();
+//var chinesePurchaseFactory = new ChinesePurchaseFactory();
+//var chineseShoppingCart = new ShoppingCart(chinesePurchaseFactory);
+//chineseShoppingCart.CalculateCosts();
+//#endregion
+
+#region Builder
+using Builder;
+
+Console.Title = "Builder";
+
+var garage = new Garage();
+
+var fordBuilder = new FORDBuilder();
+var bmwBuilder = new BMWBuilder();
+
+garage.Construct(fordBuilder);
+Console.WriteLine(fordBuilder.Car.ToString());
+//or:
+garage.Show();
+
+garage.Construct(bmwBuilder);
+Console.WriteLine(bmwBuilder.Car.ToString());
+//or:
+garage.Show();
+
 #endregion
