@@ -11,4 +11,8 @@
     <Folder Include="Behavioral\Command\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3-beta1" />
+  </ItemGroup>
+
 </Project>

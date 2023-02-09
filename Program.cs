@@ -1,4 +1,4 @@
-﻿//#region Singleton
+﻿#region Singleton
 //using Singleton;
 
 //Console.Title = "Singleton";
@@ -12,9 +12,9 @@
 //instance1.Log("This is message from instance1");
 //instance2.Log("This is message from instance2");
 //Logger.Instance.Log("This is message from Logger.Instance");
-//#endregion
+#endregion
 
-//#region FactoryMethod
+#region FactoryMethod
 //using Factory_Method;
 //Console.Title = "Factory Method";
 //var factories = new List<DiscountFactory>
@@ -28,9 +28,9 @@
 //    var discountService = factory.CreateDiscountService();
 //    Console.WriteLine($"Percentage {discountService.DiscountPercentage} " + $"comming from {discountService}");
 //}
-//#endregion
+#endregion
 
-//#region AbstractFactory
+#region AbstractFactory
 //using Abstract;
 
 //Console.Title = "Abstract Factory";
@@ -42,26 +42,42 @@
 //var chinesePurchaseFactory = new ChinesePurchaseFactory();
 //var chineseShoppingCart = new ShoppingCart(chinesePurchaseFactory);
 //chineseShoppingCart.CalculateCosts();
-//#endregion
+#endregion
 
 #region Builder
-using Builder;
+//using Builder;
 
-Console.Title = "Builder";
+//Console.Title = "Builder";
 
-var garage = new Garage();
+//var garage = new Garage();
 
-var fordBuilder = new FORDBuilder();
-var bmwBuilder = new BMWBuilder();
+//var fordBuilder = new FORDBuilder();
+//var bmwBuilder = new BMWBuilder();
 
-garage.Construct(fordBuilder);
-Console.WriteLine(fordBuilder.Car.ToString());
-//or:
-garage.Show();
+//garage.Construct(fordBuilder);
+//Console.WriteLine(fordBuilder.Car.ToString());
+////or:
+//garage.Show();
 
-garage.Construct(bmwBuilder);
-Console.WriteLine(bmwBuilder.Car.ToString());
-//or:
-garage.Show();
+//garage.Construct(bmwBuilder);
+//Console.WriteLine(bmwBuilder.Car.ToString());
+////or:
+//garage.Show();
+#endregion
 
+#region Prototype
+using Prototype;
+
+Console.Title = "Prototype";
+
+var manager = new Manager("Modern-IT");
+var managerClone = (Manager)manager.Clone(true);
+Console.WriteLine($"Manager was cloned: {managerClone.Name}");
+
+var employee = new Employee("Adam", manager);
+var employeeClone = (Employee)employee.Clone();
+
+//change the manager name - Deep Clone test
+managerClone.Name = "Modern-IT-Clone";
+Console.WriteLine($"Employee was cloned: {employeeClone.Name} " + $"with manager: {employeeClone.Manager.Name}");
 #endregion
