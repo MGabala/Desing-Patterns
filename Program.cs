@@ -66,18 +66,44 @@
 #endregion
 
 #region Prototype
-using Prototype;
+//using Prototype;
 
-Console.Title = "Prototype";
+//Console.Title = "Prototype";
 
-var manager = new Manager("Modern-IT");
-var managerClone = (Manager)manager.Clone(true);
-Console.WriteLine($"Manager was cloned: {managerClone.Name}");
+//var manager = new Manager("Modern-IT");
+//var managerClone = (Manager)manager.Clone(true);
+//Console.WriteLine($"Manager was cloned: {managerClone.Name}");
 
-var employee = new Employee("Adam", manager);
-var employeeClone = (Employee)employee.Clone();
+//var employee = new Employee("Adam", manager);
+//var employeeClone = (Employee)employee.Clone();
 
-//change the manager name - Deep Clone test
-managerClone.Name = "Modern-IT-Clone";
-Console.WriteLine($"Employee was cloned: {employeeClone.Name} " + $"with manager: {employeeClone.Manager.Name}");
+////change the manager name - Deep Clone test
+//managerClone.Name = "Modern-IT-Clone";
+//Console.WriteLine($"Employee was cloned: {employeeClone.Name} " + $"with manager: {employeeClone.Manager.Name}");
+#endregion
+
+#region Adapter
+//using ObjectAdapter;
+
+
+//using ObjectAdapter;
+using ClassAdapter;
+
+Console.Title = "Object Adapter";
+
+//object adapter example
+ICityAdapter objectAdapter = new CityAdapter();
+var objectAdapterCity = objectAdapter.GetCity();
+Console.WriteLine($"{objectAdapterCity.FullName}, {objectAdapterCity.Inhabitants}");
+
+
+
+Console.Title = "Class Adapter";
+
+//object adapter example
+ICityAdapter classAdapter = new CityAdapter();
+var classCity = classAdapter.GetCity();
+Console.WriteLine($"{classCity.FullName}, {classCity.Inhabitants}");
+
+
 #endregion
