@@ -82,28 +82,40 @@
 //Console.WriteLine($"Employee was cloned: {employeeClone.Name} " + $"with manager: {employeeClone.Manager.Name}");
 #endregion
 
-#region Adapter
-//using ObjectAdapter;
+//#region Adapter
 
+////using ObjectAdapter;
+//using ClassAdapter;
 
-//using ObjectAdapter;
-using ClassAdapter;
+//Console.Title = "Object Adapter";
 
-Console.Title = "Object Adapter";
-
-//object adapter example
-ICityAdapter objectAdapter = new CityAdapter();
-var objectAdapterCity = objectAdapter.GetCity();
-Console.WriteLine($"{objectAdapterCity.FullName}, {objectAdapterCity.Inhabitants}");
+////object adapter example
+//ICityAdapter objectAdapter = new CityAdapter();
+//var objectAdapterCity = objectAdapter.GetCity();
+//Console.WriteLine($"{objectAdapterCity.FullName}, {objectAdapterCity.Inhabitants}");
 
 
 
-Console.Title = "Class Adapter";
+//Console.Title = "Class Adapter";
 
-//object adapter example
-ICityAdapter classAdapter = new CityAdapter();
-var classCity = classAdapter.GetCity();
-Console.WriteLine($"{classCity.FullName}, {classCity.Inhabitants}");
+////object adapter example
+//ICityAdapter classAdapter = new CityAdapter();
+//var classCity = classAdapter.GetCity();
+//Console.WriteLine($"{classCity.FullName}, {classCity.Inhabitants}");
 
+//#endregion
+
+#region Bridge
+using Bridge;
+Console.Title = "Bridge";
+var noCoupon = new NoCoupon();
+var oneEuroCoupon = new OneDolarCoupon();
+var twoEuroCoupon = new TwoDolarCoupon();
+
+var meatBasedMenu = new MeatBasedMenu(noCoupon);
+Console.WriteLine($"Price is: {meatBasedMenu.CalculatePrice()}");
+
+var vegetarianMenu = new VegetarianMenu(oneEuroCoupon);
+Console.WriteLine($"Price is: {vegetarianMenu.CalculatePrice()}");
 
 #endregion
