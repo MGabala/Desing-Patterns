@@ -105,17 +105,30 @@
 
 //#endregion
 
-#region Bridge
-using Bridge;
-Console.Title = "Bridge";
-var noCoupon = new NoCoupon();
-var oneEuroCoupon = new OneDolarCoupon();
-var twoEuroCoupon = new TwoDolarCoupon();
+//#region Bridge
+//using Bridge;
+//Console.Title = "Bridge";
+//var noCoupon = new NoCoupon();
+//var oneEuroCoupon = new OneDolarCoupon();
+//var twoEuroCoupon = new TwoDolarCoupon();
 
-var meatBasedMenu = new MeatBasedMenu(noCoupon);
-Console.WriteLine($"Price is: {meatBasedMenu.CalculatePrice()}");
+//var meatBasedMenu = new MeatBasedMenu(noCoupon);
+//Console.WriteLine($"Price is: {meatBasedMenu.CalculatePrice()}");
 
-var vegetarianMenu = new VegetarianMenu(oneEuroCoupon);
-Console.WriteLine($"Price is: {vegetarianMenu.CalculatePrice()}");
+//var vegetarianMenu = new VegetarianMenu(oneEuroCoupon);
+//Console.WriteLine($"Price is: {vegetarianMenu.CalculatePrice()}");
+//#endregion
 
+#region Decorator
+using Decorator;
+Console.Title = "Decorator";
+
+var serverMonitor = new ServerAvalibility();
+serverMonitor.IsActive("True");
+var databaseMonitor = new DatabaseAvalibility();
+databaseMonitor.IsActive("False");
+
+//add behavior
+var statisticsDecorator = new StatisticsDecorator(serverMonitor);
+statisticsDecorator.IsActive($"Status via {nameof(StatisticsDecorator)} wrapper.");
 #endregion
