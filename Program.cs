@@ -119,16 +119,36 @@
 //Console.WriteLine($"Price is: {vegetarianMenu.CalculatePrice()}");
 //#endregion
 
-#region Decorator
-using Decorator;
-Console.Title = "Decorator";
+//#region Decorator
+//using Decorator;
+//Console.Title = "Decorator";
 
-var serverMonitor = new ServerAvalibility();
-serverMonitor.IsActive("True");
-var databaseMonitor = new DatabaseAvalibility();
-databaseMonitor.IsActive("False");
+//var serverMonitor = new ServerAvalibility();
+//serverMonitor.IsActive("True");
+//var databaseMonitor = new DatabaseAvalibility();
+//databaseMonitor.IsActive("False");
 
-//add behavior
-var statisticsDecorator = new StatisticsDecorator(serverMonitor);
-statisticsDecorator.IsActive($"Status via {nameof(StatisticsDecorator)} wrapper.");
+////add behavior
+//var statisticsDecorator = new StatisticsDecorator(serverMonitor);
+//statisticsDecorator.IsActive($"Status via {nameof(StatisticsDecorator)} wrapper.");
+//#endregion
+
+#region Composite
+using Composite;
+Console.Title = "Composite";
+var root = new Composite.FileSystemItem.Directory("root", 0);
+var topLevelFile = new Composite.FileSystemItem.File("toplevel.txt", 100);
+var topLevelDirectory = new Composite.FileSystemItem.Directory("topLevelDirectory", 4);
+
+root.Add(topLevelFile);
+root.Add(topLevelDirectory);
+
+var subLevelFile1 = new Composite.FileSystemItem.File("subLevel1.txt", 200);
+var subLevelFile2 = new Composite.FileSystemItem.File("subLevel2.txt", 150);
+
+topLevelDirectory.Add(subLevelFile1);
+topLevelDirectory.Add(subLevelFile2);
+
+Console.WriteLine($"Total size of root directory is: {root.GetSize()}");
+Console.WriteLine($"Size of topLevelDirectory is: {topLevelDirectory.GetSize()}");
 #endregion
