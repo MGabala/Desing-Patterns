@@ -133,22 +133,31 @@
 //statisticsDecorator.IsActive($"Status via {nameof(StatisticsDecorator)} wrapper.");
 //#endregion
 
-#region Composite
-using Composite;
-Console.Title = "Composite";
-var root = new Composite.FileSystemItem.Directory("root", 0);
-var topLevelFile = new Composite.FileSystemItem.File("toplevel.txt", 100);
-var topLevelDirectory = new Composite.FileSystemItem.Directory("topLevelDirectory", 4);
+//#region Composite
+//using Composite;
+//Console.Title = "Composite";
+//var root = new Composite.FileSystemItem.Directory("root", 0);
+//var topLevelFile = new Composite.FileSystemItem.File("toplevel.txt", 100);
+//var topLevelDirectory = new Composite.FileSystemItem.Directory("topLevelDirectory", 4);
 
-root.Add(topLevelFile);
-root.Add(topLevelDirectory);
+//root.Add(topLevelFile);
+//root.Add(topLevelDirectory);
 
-var subLevelFile1 = new Composite.FileSystemItem.File("subLevel1.txt", 200);
-var subLevelFile2 = new Composite.FileSystemItem.File("subLevel2.txt", 150);
+//var subLevelFile1 = new Composite.FileSystemItem.File("subLevel1.txt", 200);
+//var subLevelFile2 = new Composite.FileSystemItem.File("subLevel2.txt", 150);
 
-topLevelDirectory.Add(subLevelFile1);
-topLevelDirectory.Add(subLevelFile2);
+//topLevelDirectory.Add(subLevelFile1);
+//topLevelDirectory.Add(subLevelFile2);
 
-Console.WriteLine($"Total size of root directory is: {root.GetSize()}");
-Console.WriteLine($"Size of topLevelDirectory is: {topLevelDirectory.GetSize()}");
+//Console.WriteLine($"Total size of root directory is: {root.GetSize()}");
+//Console.WriteLine($"Size of topLevelDirectory is: {topLevelDirectory.GetSize()}");
+//#endregion
+
+#region Facade
+using Facade;
+Console.Title = "Facade";
+var facade = new DiscountFacade();
+
+Console.WriteLine($"Discount percentage for customer with id 1: {facade.CalculateDiscountPercentage(1)}");
+Console.WriteLine($"Discount percentage for customer with id 10: {facade.CalculateDiscountPercentage(10 )}");
 #endregion
