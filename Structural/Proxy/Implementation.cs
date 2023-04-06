@@ -93,7 +93,7 @@ public class ProtectedDocumentProxy : IDocument
 
         if (_userRole != "Viewer")
         {
-            throw new UnauthorizedAccessException();
+             throw new UnauthorizedAccessException();
         }
 
         _documentProxy.DisplayDocument();
