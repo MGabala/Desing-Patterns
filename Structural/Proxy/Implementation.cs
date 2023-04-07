@@ -1,4 +1,4 @@
-﻿//Proxy - The intent of this pattern is to provide a surrogate or placeholder for another object to control access to it.
+//Proxy - The intent of this pattern is to provide a surrogate or placeholder for another object to control access to it.
 //Use cases: when you want to provide a local representative, create expensive objects on demand, caching or locking scenario, different access rules.
 
 namespace Proxy;
@@ -102,3 +102,4 @@ public class ProtectedDocumentProxy : IDocument
             $"in {nameof(ProtectedDocumentProxy)}.");
     }
 }
+

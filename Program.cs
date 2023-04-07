@@ -82,7 +82,7 @@
 //Console.WriteLine($"Employee was cloned: {employeeClone.Name} " + $"with manager: {employeeClone.Manager.Name}");
 #endregion
 
-//#region Adapter
+#region Adapter
 
 ////using ObjectAdapter;
 //using ClassAdapter;
@@ -160,39 +160,69 @@
 
 //Console.WriteLine($"Discount percentage for customer with id 1: {facade.CalculateDiscountPercentage(1)}");
 //Console.WriteLine($"Discount percentage for customer with id 10: {facade.CalculateDiscountPercentage(10 )}");
-//#endregion
+#endregion
 
 #region Proxy
-using Proxy;
-Console.Title = "Proxy";
+//using Proxy;
+//Console.Title = "Proxy";
 
-// without proxy
-Console.WriteLine("Constructing document.");
-var myDocument = new Proxy.Document("MyDocument.pdf");
-Console.WriteLine("Document constructed.");
-myDocument.DisplayDocument();
+//// without proxy
+//Console.WriteLine("Constructing document.");
+//var myDocument = new Proxy.Document("MyDocument.pdf");
+//Console.WriteLine("Document constructed.");
+//myDocument.DisplayDocument();
 
-Console.WriteLine();
+//Console.WriteLine();
 
-// with proxy 
-Console.WriteLine("Constructing document proxy.");
-var myDocumentProxy = new Proxy.DocumentProxy("MyDocument.pdf");
-Console.WriteLine("Document proxy constructed.");
-myDocumentProxy.DisplayDocument();
+//// with proxy 
+//Console.WriteLine("Constructing document proxy.");
+//var myDocumentProxy = new Proxy.DocumentProxy("MyDocument.pdf");
+//Console.WriteLine("Document proxy constructed.");
+//myDocumentProxy.DisplayDocument();
 
-Console.WriteLine();
+//Console.WriteLine();
 
-// with chained proxy
-Console.WriteLine("Constructing protected document proxy.");
-var myProtectedDocumentProxy = new Proxy.ProtectedDocumentProxy("MyDocument.pdf", "Viewer");
-Console.WriteLine("Protected document proxy constructed.");
-myProtectedDocumentProxy.DisplayDocument();
+//// with chained proxy
+//Console.WriteLine("Constructing protected document proxy.");
+//var myProtectedDocumentProxy = new Proxy.ProtectedDocumentProxy("MyDocument.pdf", "Viewer");
+//Console.WriteLine("Protected document proxy constructed.");
+//myProtectedDocumentProxy.DisplayDocument();
 
-Console.WriteLine();
+//Console.WriteLine();
 
-// with chained proxy, no access
-Console.WriteLine("Constructing protected document proxy.");
-myProtectedDocumentProxy = new Proxy.ProtectedDocumentProxy("MyDocument.pdf", "AnotherRole");
-Console.WriteLine("Protected document proxy constructed.");
-myProtectedDocumentProxy.DisplayDocument();
+//// with chained proxy, no access
+//Console.WriteLine("Constructing protected document proxy.");
+//myProtectedDocumentProxy = new Proxy.ProtectedDocumentProxy("MyDocument.pdf", "AnotherRole");
+//Console.WriteLine("Protected document proxy constructed.");
+//myProtectedDocumentProxy.DisplayDocument();
+#endregion
+
+#region Flyweight
+using Flyweight;
+Console.Title = "Flyweight";
+
+var aBunchOfCharacters = "abba";
+
+var characterFactory = new CharacterFactory();
+
+// Get the flyweight(s)
+var characterObject = characterFactory.GetCharacter(aBunchOfCharacters[0]);
+// Pass through extrinsic state
+characterObject?.Draw("Arial", 12);
+
+characterObject = characterFactory.GetCharacter(aBunchOfCharacters[1]);
+characterObject?.Draw("Trebuchet MS", 14);
+
+characterObject = characterFactory.GetCharacter(aBunchOfCharacters[2]);
+characterObject?.Draw("Times New Roman", 16);
+
+characterObject = characterFactory.GetCharacter(aBunchOfCharacters[3]);
+characterObject?.Draw("Comic Sans", 18);
+
+// create unshared concrete flyweight (paragraph)
+var paragraph = characterFactory.CreateParagraph(
+    new List<ICharacter>() { characterObject }, 1);
+
+// draw the paragraph
+paragraph.Draw("Lucinda", 12);
 #endregion
