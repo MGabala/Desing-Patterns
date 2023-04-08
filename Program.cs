@@ -198,31 +198,48 @@
 #endregion
 
 #region Flyweight
-using Flyweight;
-Console.Title = "Flyweight";
+//using Flyweight;
+//Console.Title = "Flyweight";
 
-var aBunchOfCharacters = "abba";
+//var aBunchOfCharacters = "abba";
 
-var characterFactory = new CharacterFactory();
+//var characterFactory = new CharacterFactory();
 
-// Get the flyweight(s)
-var characterObject = characterFactory.GetCharacter(aBunchOfCharacters[0]);
-// Pass through extrinsic state
-characterObject?.Draw("Arial", 12);
+//// Get the flyweight(s)
+//var characterObject = characterFactory.GetCharacter(aBunchOfCharacters[0]);
+//// Pass through extrinsic state
+//characterObject?.Draw("Arial", 12);
 
-characterObject = characterFactory.GetCharacter(aBunchOfCharacters[1]);
-characterObject?.Draw("Trebuchet MS", 14);
+//characterObject = characterFactory.GetCharacter(aBunchOfCharacters[1]);
+//characterObject?.Draw("Trebuchet MS", 14);
 
-characterObject = characterFactory.GetCharacter(aBunchOfCharacters[2]);
-characterObject?.Draw("Times New Roman", 16);
+//characterObject = characterFactory.GetCharacter(aBunchOfCharacters[2]);
+//characterObject?.Draw("Times New Roman", 16);
 
-characterObject = characterFactory.GetCharacter(aBunchOfCharacters[3]);
-characterObject?.Draw("Comic Sans", 18);
+//characterObject = characterFactory.GetCharacter(aBunchOfCharacters[3]);
+//characterObject?.Draw("Comic Sans", 18);
 
-// create unshared concrete flyweight (paragraph)
-var paragraph = characterFactory.CreateParagraph(
-    new List<ICharacter>() { characterObject }, 1);
+//// create unshared concrete flyweight (paragraph)
+//var paragraph = characterFactory.CreateParagraph(
+//    new List<ICharacter>() { characterObject }, 1);
 
-// draw the paragraph
-paragraph.Draw("Lucinda", 12);
+//// draw the paragraph
+//paragraph.Draw("Lucinda", 12);
+#endregion
+
+#region TemplateMethod
+using Template_Method;
+
+Console.Title = "Template Method";
+
+ExchangeMailParser exchangeMailParser = new();
+Console.WriteLine(exchangeMailParser.ParseMailBody("bf3a298c-9990-4b02-873d-3d3c98ad16d2"));
+Console.WriteLine();
+
+ApacheMailParser apacheMailParser = new();
+Console.WriteLine(apacheMailParser.ParseMailBody("07b8a8c7-c598-4b6c-9049-ecce9fe4a56b"));
+Console.WriteLine();
+
+EudoraMailParser eudoraMailParser = new();
+Console.WriteLine(eudoraMailParser.ParseMailBody("789fe935-ced2-4fbd-865b-172909560a93"));
 #endregion
