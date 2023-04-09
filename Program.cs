@@ -228,18 +228,28 @@
 #endregion
 
 #region TemplateMethod
-using Template_Method;
+//using Template_Method;
 
-Console.Title = "Template Method";
+//Console.Title = "Template Method";
 
-ExchangeMailParser exchangeMailParser = new();
-Console.WriteLine(exchangeMailParser.ParseMailBody("bf3a298c-9990-4b02-873d-3d3c98ad16d2"));
-Console.WriteLine();
+//ExchangeMailParser exchangeMailParser = new();
+//Console.WriteLine(exchangeMailParser.ParseMailBody("bf3a298c-9990-4b02-873d-3d3c98ad16d2"));
+//Console.WriteLine();
 
-ApacheMailParser apacheMailParser = new();
-Console.WriteLine(apacheMailParser.ParseMailBody("07b8a8c7-c598-4b6c-9049-ecce9fe4a56b"));
-Console.WriteLine();
+//ApacheMailParser apacheMailParser = new();
+//Console.WriteLine(apacheMailParser.ParseMailBody("07b8a8c7-c598-4b6c-9049-ecce9fe4a56b"));
+//Console.WriteLine();
 
-EudoraMailParser eudoraMailParser = new();
-Console.WriteLine(eudoraMailParser.ParseMailBody("789fe935-ced2-4fbd-865b-172909560a93"));
+//EudoraMailParser eudoraMailParser = new();
+//Console.WriteLine(eudoraMailParser.ParseMailBody("789fe935-ced2-4fbd-865b-172909560a93"));
+#endregion
+
+#region Strategy
+using Strategy;
+
+Console.Title = "Strategy";
+
+var order = new Order("Marvin Software", 5, "Visual Studio License");
+order.Export(new CSVExportService());
+order.Export(new JsonExportService());
 #endregion
