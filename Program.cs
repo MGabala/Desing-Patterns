@@ -287,33 +287,59 @@
 #endregion
 
 #region Memento
-using Memento;
+//using Memento;
 
-Console.Title = "Memento";
+//Console.Title = "Memento";
 
-CommandManager commandManager = new();
-IEmployeeManagerRepository repository = new EmployeeManagerRepository();
+//CommandManager commandManager = new();
+//IEmployeeManagerRepository repository = new EmployeeManagerRepository();
 
-commandManager.Invoke(
-    new AddEmployeeToManagerList(repository, 1, new Employee(111, "Kevin")));
-repository.WriteDataStore();
+//commandManager.Invoke(
+//    new AddEmployeeToManagerList(repository, 1, new Employee(111, "Kevin")));
+//repository.WriteDataStore();
 
-commandManager.Undo();
-repository.WriteDataStore();
+//commandManager.Undo();
+//repository.WriteDataStore();
 
-commandManager.Invoke(
-    new AddEmployeeToManagerList(repository, 1, new Employee(222, "Clara")));
-repository.WriteDataStore();
+//commandManager.Invoke(
+//    new AddEmployeeToManagerList(repository, 1, new Employee(222, "Clara")));
+//repository.WriteDataStore();
 
-commandManager.Invoke(
-    new AddEmployeeToManagerList(repository, 2, new Employee(333, "Tom")));
-repository.WriteDataStore();
+//commandManager.Invoke(
+//    new AddEmployeeToManagerList(repository, 2, new Employee(333, "Tom")));
+//repository.WriteDataStore();
 
-// try adding the same employee again
-commandManager.Invoke(
-    new AddEmployeeToManagerList(repository, 2, new Employee(333, "Tom")));
-repository.WriteDataStore();
+//// try adding the same employee again
+//commandManager.Invoke(
+//    new AddEmployeeToManagerList(repository, 2, new Employee(333, "Tom")));
+//repository.WriteDataStore();
 
-commandManager.UndoAll();
-repository.WriteDataStore();
+//commandManager.UndoAll();
+//repository.WriteDataStore();
+#endregion
+
+#region Mediator
+using Mediator;
+
+Console.Title = "Mediator";
+
+TeamChatRoom teamChatroom = new();
+
+var sven = new Lawyer("Sven");
+var kenneth = new Lawyer("Kenneth");
+var ann = new AccountManager("Ann");
+var john = new AccountManager("John");
+var kylie = new AccountManager("Kylie");
+
+teamChatroom.Register(sven);
+teamChatroom.Register(kenneth);
+teamChatroom.Register(ann);
+teamChatroom.Register(john);
+teamChatroom.Register(kylie);
+
+ann.Send("Hi everyone, can someone have a look at file ABC123?  I need a compliance check.");
+sven.Send("On it!");
+sven.Send("Ann", "Could you join me in a Teams call?");
+sven.Send("Ann", "All good :)");
+ann.SendTo<AccountManager>("The file was approved!");
 #endregion
