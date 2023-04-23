@@ -319,27 +319,58 @@
 #endregion
 
 #region Mediator
-using Mediator;
+//using Mediator;
 
-Console.Title = "Mediator";
+//Console.Title = "Mediator";
 
-TeamChatRoom teamChatroom = new();
+//TeamChatRoom teamChatroom = new();
 
-var sven = new Lawyer("Sven");
-var kenneth = new Lawyer("Kenneth");
-var ann = new AccountManager("Ann");
-var john = new AccountManager("John");
-var kylie = new AccountManager("Kylie");
+//var sven = new Lawyer("Sven");
+//var kenneth = new Lawyer("Kenneth");
+//var ann = new AccountManager("Ann");
+//var john = new AccountManager("John");
+//var kylie = new AccountManager("Kylie");
 
-teamChatroom.Register(sven);
-teamChatroom.Register(kenneth);
-teamChatroom.Register(ann);
-teamChatroom.Register(john);
-teamChatroom.Register(kylie);
+//teamChatroom.Register(sven);
+//teamChatroom.Register(kenneth);
+//teamChatroom.Register(ann);
+//teamChatroom.Register(john);
+//teamChatroom.Register(kylie);
 
-ann.Send("Hi everyone, can someone have a look at file ABC123?  I need a compliance check.");
-sven.Send("On it!");
-sven.Send("Ann", "Could you join me in a Teams call?");
-sven.Send("Ann", "All good :)");
-ann.SendTo<AccountManager>("The file was approved!");
+//ann.Send("Hi everyone, can someone have a look at file ABC123?  I need a compliance check.");
+//sven.Send("On it!");
+//sven.Send("Ann", "Could you join me in a Teams call?");
+//sven.Send("Ann", "All good :)");
+//ann.SendTo<AccountManager>("The file was approved!");
+#endregion
+
+#region ChainOfResponsibility
+using Chain_Of_Responsibility;
+
+using System.ComponentModel.DataAnnotations;
+
+Console.Title = "Chain of Responsibility";
+
+var validDocument = new Document("How to Avoid Java Development",
+    DateTimeOffset.UtcNow, true, true);
+var invalidDocument = new Document("How to Avoid Java Development",
+    DateTimeOffset.UtcNow, false, true);
+
+var documentHandlerChain = new DocumentTitleHandler();
+documentHandlerChain
+    .SetSuccessor(new DocumentLastModifiedHandler())
+    .SetSuccessor(new DocumentApprovedByLitigationHandler())
+    .SetSuccessor(new DocumentApprovedByManagementHandler());
+
+try
+{
+    documentHandlerChain.Handle(validDocument);
+    Console.WriteLine("Valid document is valid.");
+    documentHandlerChain.Handle(invalidDocument);
+    Console.WriteLine("Invalid document is valid.");
+}
+catch (ValidationException validationException)
+{
+    Console.WriteLine(validationException.Message);
+}
 #endregion
