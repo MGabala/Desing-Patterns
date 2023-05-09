@@ -345,32 +345,57 @@
 #endregion
 
 #region ChainOfResponsibility
-using Chain_Of_Responsibility;
+//using Chain_Of_Responsibility;
 
-using System.ComponentModel.DataAnnotations;
+//using System.ComponentModel.DataAnnotations;
 
-Console.Title = "Chain of Responsibility";
+//Console.Title = "Chain of Responsibility";
 
-var validDocument = new Document("How to Avoid Java Development",
-    DateTimeOffset.UtcNow, true, true);
-var invalidDocument = new Document("How to Avoid Java Development",
-    DateTimeOffset.UtcNow, false, true);
+//var validDocument = new Document("How to Avoid Java Development",
+//    DateTimeOffset.UtcNow, true, true);
+//var invalidDocument = new Document("How to Avoid Java Development",
+//    DateTimeOffset.UtcNow, false, true);
 
-var documentHandlerChain = new DocumentTitleHandler();
-documentHandlerChain
-    .SetSuccessor(new DocumentLastModifiedHandler())
-    .SetSuccessor(new DocumentApprovedByLitigationHandler())
-    .SetSuccessor(new DocumentApprovedByManagementHandler());
+//var documentHandlerChain = new DocumentTitleHandler();
+//documentHandlerChain
+//    .SetSuccessor(new DocumentLastModifiedHandler())
+//    .SetSuccessor(new DocumentApprovedByLitigationHandler())
+//    .SetSuccessor(new DocumentApprovedByManagementHandler());
 
-try
-{
-    documentHandlerChain.Handle(validDocument);
-    Console.WriteLine("Valid document is valid.");
-    documentHandlerChain.Handle(invalidDocument);
-    Console.WriteLine("Invalid document is valid.");
-}
-catch (ValidationException validationException)
-{
-    Console.WriteLine(validationException.Message);
-}
+//try
+//{
+//    documentHandlerChain.Handle(validDocument);
+//    Console.WriteLine("Valid document is valid.");
+//    documentHandlerChain.Handle(invalidDocument);
+//    Console.WriteLine("Invalid document is valid.");
+//}
+//catch (ValidationException validationException)
+//{
+//    Console.WriteLine(validationException.Message);
+//}
+#endregion
+
+#region Observer
+using Observer;
+
+Console.Title = "Observer";
+
+TicketStockService ticketStockService = new();
+TicketResellerService ticketResellerService = new();
+OrderService orderService = new();
+
+// add two observers
+orderService.AddObserver(ticketStockService);
+orderService.AddObserver(ticketResellerService);
+
+// notify
+orderService.CompleteTicketSale(1, 2);
+
+Console.WriteLine();
+
+// remove one observer
+orderService.RemoveObserver(ticketResellerService);
+
+// notify
+orderService.CompleteTicketSale(2, 4);
 #endregion
