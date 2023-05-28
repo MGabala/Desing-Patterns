@@ -422,32 +422,57 @@
 #endregion
 
 #region Iterator
-using Iterator;
+//using Iterator;
+//Console.Title = "Iterator";
 
-using Prototype;
+//// create the collection
+//PeopleCollection people = new();
 
-Console.Title = "Iterator";
+//people.Add(new Iterator.Person("Mateusz Gabała", "Polska"));
+//people.Add(new Iterator.Person("Second Person", "Belgium"));
+//people.Add(new Iterator.Person("Third Person", "The Netherlands"));
+//people.Add(new Iterator.Person("Fourth Person", "Germany"));
 
-// create the collection
-PeopleCollection people = new();
+//// create the iterator
+//var peopleIterator = people.CreateIterator();
 
-people.Add(new Iterator.Person("Mateusz Gabała", "Polska"));
-people.Add(new Iterator.Person("Second Person", "Belgium"));
-people.Add(new Iterator.Person("Third Person", "The Netherlands"));
-people.Add(new Iterator.Person("Fourth Person", "Germany"));
+//// use the iterator to run through the people
+//// in the collection; they should come out 
+//// in alphabetical order
+//for (Iterator.Person person = peopleIterator.First();
+//    !peopleIterator.IsDone;
+//    person = peopleIterator.Next())
+//{
+//    Console.WriteLine(person?.Name);
+//}
 
-// create the iterator
-var peopleIterator = people.CreateIterator();
+//Console.ReadKey();
+#endregion
 
-// use the iterator to run through the people
-// in the collection; they should come out 
-// in alphabetical order
-for (Iterator.Person person = peopleIterator.First();
-    !peopleIterator.IsDone;
-    person = peopleIterator.Next())
-{
-    Console.WriteLine(person?.Name);
-}
+#region Visitor
+using System.ComponentModel;
+
+using Visitor;
+
+Console.Title = "Visitor";
+
+// create container & add concrete elements
+var container = new Visitor.Container();
+
+container.Customers.Add(new Customer("Sophie", 500));
+container.Customers.Add(new Customer("Karen", 1000));
+container.Customers.Add(new Customer("Sven", 800));
+container.Employees.Add(new Employee("Kevin", 18));
+container.Employees.Add(new Employee("Tom", 5));
+
+// create visitor
+DiscountVisitor discountVisitor = new();
+
+// pass it through
+container.Accept(discountVisitor);
+
+// write out gathered amount
+Console.WriteLine($"Total discount: {discountVisitor.TotalDiscountGiven}");
 
 Console.ReadKey();
 #endregion
