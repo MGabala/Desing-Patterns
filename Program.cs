@@ -291,31 +291,24 @@
 
 //Console.Title = "Memento";
 
-//CommandManager commandManager = new();
-//IEmployeeManagerRepository repository = new EmployeeManagerRepository();
+//var manager = new Manager(1, "Katie");
+//var history = new ManagerHistory();
 
-//commandManager.Invoke(
-//    new AddEmployeeToManagerList(repository, 1, new Employee(111, "Kevin")));
-//repository.WriteDataStore();
+//history.Save(manager);
+//manager.AddEmployee(new Employee(111, "Kevin"));
+//manager.WriteEmployees();
 
-//commandManager.Undo();
-//repository.WriteDataStore();
+//history.Save(manager);
+//manager.AddEmployee(new Employee(222, "Clara"));
+//manager.WriteEmployees();
 
-//commandManager.Invoke(
-//    new AddEmployeeToManagerList(repository, 1, new Employee(222, "Clara")));
-//repository.WriteDataStore();
+//// undo the last change (removes Clara)
+//history.Undo(manager);
+//manager.WriteEmployees();
 
-//commandManager.Invoke(
-//    new AddEmployeeToManagerList(repository, 2, new Employee(333, "Tom")));
-//repository.WriteDataStore();
-
-//// try adding the same employee again
-//commandManager.Invoke(
-//    new AddEmployeeToManagerList(repository, 2, new Employee(333, "Tom")));
-//repository.WriteDataStore();
-
-//commandManager.UndoAll();
-//repository.WriteDataStore();
+//// undo again (removes Kevin, back to the original empty state)
+//history.Undo(manager);
+//manager.WriteEmployees();
 #endregion
 
 #region Mediator
