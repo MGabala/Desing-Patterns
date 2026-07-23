@@ -2,6 +2,9 @@
 
 **Date:** 2026-07-22
 **Status:** Approved for planning
+**Packaging superseded by:** `docs/superpowers/specs/2026-07-23-choose-pattern-dual-skill-design.md`
+(Claude + Grok dual install, shared catalog at `skills/choose-pattern/references/`).
+Behavior tables and scaffolding conventions below remain the content source for that design.
 
 ## Purpose
 
